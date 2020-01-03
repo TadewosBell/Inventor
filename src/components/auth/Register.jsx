@@ -27,6 +27,8 @@ import {
 import * as Font from 'expo-font';
 import { isForOfStatement, isIfStatement } from '@babel/types';
 
+import { register } from '../../client/userClient';
+
 export class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -48,12 +50,8 @@ export class Register extends React.Component {
       }
     }
 
-    validate(text) {
-      return text != 'undefined' && text;
-    }
-
     onFirstName = (firstName) => {
-      if(validate(firstName)){
+      if(firstName){
         this.setState({ firstName  });
       }
     }
@@ -108,6 +106,8 @@ export class Register extends React.Component {
 
       if(confirmPassword == password){
         //here do register post
+        const res = register({userName,firstName,lastName,buisnessName,email,password});
+        console.log(res);
       } else {
         
       }
